@@ -1,10 +1,10 @@
 FROM node:23-alpine
 
-COPY . /usr/src/app
+WORKDIR /app
 
-WORKDIR /usr/src/app
+COPY package*.json ./
 
-RUN npm install -g npm && npm install
+RUN npm install
 
 EXPOSE 3000
 
