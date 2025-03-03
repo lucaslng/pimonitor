@@ -3,9 +3,10 @@ import { getSystemDetails } from "./backend/system";
 let app = express();
 const port = 3000;
 
-app.get('/', (_, res: express.Response) => {
+app.get('/', async (_, res: express.Response) => {
 //  res.send('Hello, World! 🌍');
- res.send(getSystemDetails());
+ res.send(await getSystemDetails());
+ console.log(await getSystemDetails());
 });
 
 app.listen(port, () => {
