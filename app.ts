@@ -1,8 +1,8 @@
-var express = require("express");
-const app = express();
+import express = require("express");
+let app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
+app.get('/', (_, res: express.Response) => {
  res.send('Hello, World! 🌍');
 });
 
