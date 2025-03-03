@@ -13,9 +13,12 @@ function getCpuUsage(): string[] {
 	});
 }
 
-async function getCpuTemp(): Promise<number> {
-	const { stdout } = await execAsync("cat /sys/class/thermal/thermal_zone0/temp");
-	return parseInt(stdout) / 1000;
+async function getCpuTemp() {
+  if (os.platform() === 'darwin') {
+    return 69;
+  }
+	const temp = (await execAsync("cat /sys/class/thermal/thermal_zone0/temp")).stdout;
+	return parseInt(temp) / 1000;
 }
 
 function bytesToGB(bytes: number) {
@@ -23,6 +26,9 @@ function bytesToGB(bytes: number) {
 }
 
 export async function getSystemDetails() {
+	const loadAvg = os.loadavg();
+	const uptime = os.uptime();
+
   const cpuUsage = getCpuUsage();
 
   const totalMem = os.totalmem();
@@ -30,9 +36,10 @@ export async function getSystemDetails() {
   const usedMem = totalMem - freeMem;
  
   const cpuTemp = await getCpuTemp();
-
+	
   return {
-    os,
+		loadAvg,
+		uptime,
     cpuTemp,
     cpuUsage,
     memoryUsage: {
