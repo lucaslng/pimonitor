@@ -4,7 +4,7 @@ let app = express();
 const port = 3000;
 
 app.get('/', (_, res: express.Response) => {
- res.send('Hello, World! 🌍');
+//  res.send('Hello, World! 🌍');
  res.send(getSystemDetails());
 });
 
