@@ -1,8 +1,6 @@
 import Details from "./details";
 import styles from "./page.module.css";
 
-export const dynamic = 'force-dynamic'
-
 export default async function Home() {
   
   return (
