@@ -1,6 +1,7 @@
 import os from "os";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { NextResponse } from "next/server";
 
 const execAsync = promisify(exec);
 
@@ -22,7 +23,7 @@ function bytesToGB(bytes: number) {
   return (bytes / (1024 * 1024 * 1024)).toFixed(2);
 }
 
-export async function getSystemDetails() {
+async function getSystemDetails() {
 	const loadAvg = os.loadavg();
 	const uptime = os.uptime();
 
@@ -45,4 +46,9 @@ export async function getSystemDetails() {
       free: parseFloat(bytesToGB(freeMem)),
     },
   };
+}
+
+export async function GET(_: any) {
+  const details = await getSystemDetails();
+  return NextResponse.json({ details }, { status: 200 });
 }
