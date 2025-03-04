@@ -17,16 +17,14 @@ export default function Details() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("fetching data");
       const res = await fetch("/api/system");
       const data = await res.json();
-      console.log(data);
       setData(data);
     };
 
-    fetchData(); // Fetch initially
+    fetchData();
 
-    const interval = setInterval(fetchData, 2000);
+    const interval = setInterval(fetchData, 1000);
 
     return () => clearInterval(interval);
   }, []);
