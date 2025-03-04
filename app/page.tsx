@@ -1,5 +1,7 @@
+import { getSystemDetails } from "@/backend/system";
 import styles from "./page.module.css";
-import { getSystemDetails } from "./backend/system";
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const data = await getSystemDetails();

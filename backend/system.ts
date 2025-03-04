@@ -14,9 +14,6 @@ function getCpuUsage(): string[] {
 }
 
 async function getCpuTemp() {
-  if (os.platform() === 'darwin') {
-    return 69;
-  }
 	const temp = (await execAsync("cat /sys/class/thermal/thermal_zone0/temp")).stdout;
 	return parseInt(temp) / 1000;
 }
