@@ -11,6 +11,7 @@ export default function Home() {
       console.log("fetching data");
       const res = await fetch("/api/system"); // Adjust the API route as needed
       const data = await res.json();
+      console.log(data);
       setCpuTemp(data.cpuTemp);
     };
 
