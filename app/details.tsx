@@ -8,6 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("fetching data");
       const res = await fetch("/api/system"); // Adjust the API route as needed
       const data = await res.json();
       setCpuTemp(data.cpuTemp);
