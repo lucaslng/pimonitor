@@ -48,7 +48,7 @@ async function getSystemDetails() {
   };
 }
 
-export async function GET(_: any) {
+export async function GET() {
   const details = await getSystemDetails();
   return NextResponse.json({ details }, { status: 200 });
 }
