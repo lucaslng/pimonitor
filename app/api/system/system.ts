@@ -4,12 +4,12 @@ import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
-function getCpuUsage(): string[] {
+function getCpuUsage(): number[] {
 	const cpus = os.cpus();
 	return cpus.map((cpu) => {
 		const total = Object.values(cpu.times).reduce((acc, tv) => acc + tv, 0);
 		const usage = 100 - (100 * cpu.times.idle) / total;
-		return usage.toFixed(1);
+		return usage;
 	});
 }
 
