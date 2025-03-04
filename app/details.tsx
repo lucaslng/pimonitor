@@ -9,11 +9,11 @@ export default function Details() {
     cpuTemp: 0,
     cpuUsage: [0],
     memoryUsage: {
-        total: 0,
-        used: 0,
-        free: 0,
-    }
-});
+      total: 0,
+      used: 0,
+      free: 0,
+    },
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,8 +33,17 @@ export default function Details() {
     <div>
       <h2>cpu temp: {data.cpuTemp}°C</h2>
       <h2>uptime: {data.uptime}</h2>
-      <h2>cpu usage: {data.cpuUsage.map((value) => {return value.toFixed(1) + "%"}).join(" ")}</h2>
-      <h2>mem: {data.memoryUsage.used} / {data.memoryUsage.total}GB</h2>
+      <h2>
+        cpu usage:{" "}
+        {data.cpuUsage
+          .map((value) => {
+            return value.toFixed(1) + "%";
+          })
+          .join(" ")}
+      </h2>
+      <h2>
+        mem: {data.memoryUsage.used} / {data.memoryUsage.total}GB
+      </h2>
     </div>
   );
 }
