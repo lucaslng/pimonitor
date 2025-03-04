@@ -1,10 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./page.module.css";
 
-export default function Home() {
-  const [cpuTemp, setCpuTemp] = useState("Loading...");
+export default function Details() {
+  const [data, setData] = useState({
+    loadAvg: 0,
+    uptime: 0,
+    cpuTemp: 0,
+    cpuUsage: "",
+    memoryUsage: {
+        total: 0,
+        used: 0,
+        free: 0,
+    }
+});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,23 +21,23 @@ export default function Home() {
       const res = await fetch("/api/system"); // Adjust the API route as needed
       const data = await res.json();
       console.log(data);
-      setCpuTemp(data.cpuTemp);
+      setData(data);
     };
 
     fetchData(); // Fetch initially
 
-    const interval = setInterval(fetchData, 5000); // Update every 5 seconds
+    const interval = setInterval(fetchData, 2000); // Update every 5 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1>Raspberry Pi</h1>
-        <h2>{cpuTemp}</h2>
-      </main>
-      <footer className={styles.footer}></footer>
+    <div>
+      <h2>cpu temp: {data.cpuTemp}</h2>
+      <h2>uptime: {data.uptime}</h2>
+      <h2>cpu usage: {data.cpuUsage}</h2>
+      <h2>mem: {data.memoryUsage.used} / {data.memoryUsage.total}</h2>
+      <h2>load average: {data.loadAvg}</h2>
     </div>
   );
 }

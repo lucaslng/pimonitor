@@ -11,9 +11,6 @@ export default async function Home() {
         <h1>Raspberry Pi</h1>
         <Details></Details>
       </main>
-      <footer className={styles.footer}>
-
-      </footer>
     </div>
   );
 }
