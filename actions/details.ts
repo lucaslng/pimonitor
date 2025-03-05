@@ -60,7 +60,7 @@ function bytesToGB(bytes: number) {
   return (bytes / (1024 * 1024 * 1024)).toFixed(2);
 }
 
-export async function getSystemDetails(interval = 1000): Promise<DetailsType> {
+export async function getSystemDetails(interval = 2000): Promise<DetailsType> {
   // await new Promise(r => setTimeout(r, 3000));
 
   const uptime = os.uptime();
