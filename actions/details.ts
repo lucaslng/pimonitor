@@ -63,7 +63,7 @@ function bytesToGB(bytes: number) {
 export async function getSystemDetails(interval = 2000): Promise<DetailsType> {
   // await new Promise(r => setTimeout(r, 3000));
 
-  const uptime = os.uptime();
+  const uptime = Math.round(os.uptime());
 
   const cpuUsage = await getCpuUsage(interval);
 

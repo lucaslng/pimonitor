@@ -2,6 +2,7 @@
 
 import { DetailsType, getSystemDetails } from "@/actions/details";
 import { useState, useEffect } from "react";
+import { convertUptime } from '../utils/convert_uptime';
 
 export default function Details({
   initialDetails,
@@ -26,7 +27,7 @@ export default function Details({
   return (
     <div>
       <h2>cpu temp: {details.cpuTemp.toFixed(1)}°C</h2>
-      <h2>uptime: {details.uptime}</h2>
+      <h2>uptime: {Object.entries(convertUptime(details.uptime)).map((value) => (value[1].toString() + " " + value[0])).join(" ")}</h2>
       <h2>
         cpu usage:{" "}
         {(
