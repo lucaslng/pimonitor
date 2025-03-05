@@ -18,7 +18,7 @@ export default function Details({
 
     fetchData();
 
-    const interval = setInterval(fetchData, 1000);
+    const interval = setInterval(fetchData);
 
     return () => clearInterval(interval);
   }, []);
