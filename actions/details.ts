@@ -6,6 +6,18 @@ import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
+export type DetailsType = {
+  loadAvg: number[];
+  uptime: number;
+  cpuTemp: number;
+  cpuUsage: number[];
+  memoryUsage: {
+    total: number;
+    used: number;
+    free: number;
+  };
+};
+
 function getCpuUsage(): number[] {
   const cpus = os.cpus();
   return cpus.map((cpu) => {
@@ -29,7 +41,7 @@ function bytesToGB(bytes: number) {
   return (bytes / (1024 * 1024 * 1024)).toFixed(2);
 }
 
-export async function getSystemDetails() {
+export async function getSystemDetails(): Promise<DetailsType> {
   const loadAvg = os.loadavg();
   const uptime = os.uptime();
 

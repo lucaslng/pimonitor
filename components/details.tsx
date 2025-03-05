@@ -4,7 +4,7 @@ import { getSystemDetails } from "@/actions/details";
 import { useState, useEffect } from "react";
 
 export default function Details() {
-  const [data, setData] = useState({
+  const [details, setData] = useState({
     loadAvg: [0],
     uptime: 0,
     cpuTemp: 0,
@@ -31,18 +31,18 @@ export default function Details() {
 
   return (
     <div>
-      <h2>cpu temp: {data.cpuTemp}°C</h2>
-      <h2>uptime: {data.uptime}</h2>
+      <h2>cpu temp: {details.cpuTemp}°C</h2>
+      <h2>uptime: {details.uptime}</h2>
       <h2>
         cpu usage:{" "}
-        {data.cpuUsage
+        {details.cpuUsage
           .map((value) => {
             return value.toFixed(1) + "%";
           })
           .join(" ")}
       </h2>
       <h2>
-        mem: {data.memoryUsage.used} / {data.memoryUsage.total}GB
+        mem: {details.memoryUsage.used} / {details.memoryUsage.total}GB
       </h2>
     </div>
   );
