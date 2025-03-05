@@ -16,7 +16,7 @@ export default function Details({
       try {
         const details = await getSystemDetails();
         setDetails(details);
-      } catch (error) {
+      } catch {
         clearInterval(interval);
       }
     };
