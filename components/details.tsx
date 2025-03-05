@@ -2,7 +2,7 @@
 
 import { DetailsType, getSystemDetails } from "@/actions/details";
 import { useState, useEffect } from "react";
-import { convertUptime } from '../utils/convert_uptime';
+import { convertUptime } from "../utils/convert_uptime";
 
 export default function Details({
   initialDetails,
@@ -13,8 +13,12 @@ export default function Details({
 
   useEffect(() => {
     const fetchData = async () => {
-      const details = await getSystemDetails();
-      setDetails(details);
+      try {
+        const details = await getSystemDetails();
+        setDetails(details);
+      } catch (error) {
+        clearInterval(interval);
+      }
     };
 
     fetchData();
@@ -27,7 +31,12 @@ export default function Details({
   return (
     <div>
       <h2>cpu temp: {details.cpuTemp.toFixed(1)}°C</h2>
-      <h2>uptime: {Object.entries(convertUptime(details.uptime)).map((value) => (value[1].toString() + " " + value[0])).join(" ")}</h2>
+      <h2>
+        uptime:{" "}
+        {Object.entries(convertUptime(details.uptime))
+          .map((value) => value[1].toString() + " " + value[0])
+          .join(" ")}
+      </h2>
       <h2>
         cpu usage:{" "}
         {(
