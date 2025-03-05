@@ -1,5 +1,6 @@
 "use client";
 
+import { getSystemDetails } from "@/actions/details";
 import { useState, useEffect } from "react";
 
 export default function Details() {
@@ -17,9 +18,8 @@ export default function Details() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("/api/system");
-      const data = await res.json();
-      setData(data);
+      const details = await getSystemDetails();
+      setData(details);
     };
 
     fetchData();

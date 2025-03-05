@@ -1,4 +1,4 @@
-import Details from "./details";
+import Details from "../components/details";
 import styles from "./page.module.css";
 
 export default async function Home() {
