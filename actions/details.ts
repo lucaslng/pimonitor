@@ -29,7 +29,7 @@ function getCpuUsage(): number[] {
 
 async function getCpuTemp() {
   if (process.env.NODE_ENV === "development") {
-    return 69;
+    return 69.42069;
   } else {
     const temp = (await execAsync("cat /sys/class/thermal/thermal_zone0/temp"))
       .stdout;

@@ -31,7 +31,7 @@ export default function Details() {
 
   return (
     <div>
-      <h2>cpu temp: {details.cpuTemp}°C</h2>
+      <h2>cpu temp: {details.cpuTemp.toFixed(1)}°C</h2>
       <h2>uptime: {details.uptime}</h2>
       <h2>
         cpu usage:{" "}
