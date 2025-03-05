@@ -29,6 +29,12 @@ export default function Details({
       <h2>uptime: {details.uptime}</h2>
       <h2>
         cpu usage:{" "}
+        {(
+          details.cpuUsage.reduce((sum, value) => sum + value, 0) /
+          details.cpuUsage.length
+        ).toFixed(1)}
+        %
+        <br />
         {details.cpuUsage
           .map((value) => {
             return value.toFixed(1) + "%";
