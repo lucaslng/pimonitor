@@ -1,25 +1,19 @@
 "use client";
 
-import { getSystemDetails } from "@/actions/details";
+import { DetailsType, getSystemDetails } from "@/actions/details";
 import { useState, useEffect } from "react";
 
-export default function Details() {
-  const [details, setData] = useState({
-    loadAvg: [0],
-    uptime: 0,
-    cpuTemp: 0,
-    cpuUsage: [0],
-    memoryUsage: {
-      total: 0,
-      used: 0,
-      free: 0,
-    },
-  });
+export default function Details({
+  initialDetails,
+}: {
+  initialDetails: DetailsType;
+}) {
+  const [details, setDetails] = useState(initialDetails);
 
   useEffect(() => {
     const fetchData = async () => {
       const details = await getSystemDetails();
-      setData(details);
+      setDetails(details);
     };
 
     fetchData();
